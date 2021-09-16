@@ -17,9 +17,12 @@
     <label>Edit figure title:</label>
     <input type="text" name="figure[title_ids]">
     <br>
-    <label>Edit figure landmark:</label>
-    <input type="text" name="figure[landmark_ids][]" id="new_landmark" >
     
+    <label>Edit figure landmark:</label>
+    <input type="text" name="figure[landmarks][]" id="new_landmark" >
+    <% Landmark.all.each do |landmark| %>
+        <input type="checkbox" name="figure[landmark_ids][]" id="landmark_<%= landmark.id %>" value="<%= landmark.id %>"><%= landmark.name %><br>
+    <% end %>
     
     
     <br>
