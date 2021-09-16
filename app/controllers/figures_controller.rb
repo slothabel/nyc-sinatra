@@ -26,7 +26,7 @@ class FiguresController < ApplicationController
     erb :'/figures/edit'
   end
 
-  post '/figures/' do
+  post '/figures' do
     @figure = Figure.create(params["figure"])
     unless params["title"]["name"].empty? 
       @figure.titles << Title.create(params["title"])
@@ -46,6 +46,21 @@ class FiguresController < ApplicationController
     @figure.update(params["figure"])
     redirect "figures/#{@figure.id}"
   end
+
+#   patch '/figures/:id' do
+#     if !params[:figure].keys.include?("landmarks")
+#     params[:figure]["landmarks"] = []
+#     end
+
+#     @figure = Figure.find_by_id(params[:id])
+
+#     @figure.update(params["figure"])
+#     if !params["figure"]["landmarks"].empty?
+#       @owner.landmark << Landmark.create(landmark: params["figure"]["landmarks"])
+#     end
+#     redirect "figures/#{@figure.id}"
+# end
+
 
 
 
