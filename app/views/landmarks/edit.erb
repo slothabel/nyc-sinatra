@@ -6,12 +6,15 @@
  
  <label>Edit Landmarks:</label><br>
  <% Landmark.all.each do |landmark| %>   
+    <br>
      <label><%= landmark.name %></label>   
       <input type="checkbox" name="landmark[name][]" value="<%= landmark.id %>" id="<%= landmark.name %>" <%='checked' if Landmark.all.include?(landmark) %>>  
+      <br>
       <label><%= landmark.year_completed %></label>   
       <input type="checkbox" name="landmark[year_completed][]" value="<%= landmark.id %>" id="<%= landmark.year_completed %>" <%='checked' if Landmark.all.include?(landmark) %>>  
 
       <% end %>
+     <br>
        <label>Add New:</label> 
        <input type="text" id="name" name="landmark[name]"><br></br>
        <input type="text" id="year_completed" name="landmark[year_completed]"><br></br>
