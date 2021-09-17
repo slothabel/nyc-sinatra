@@ -36,30 +36,23 @@ class FiguresController < ApplicationController
     end
     @figure.save
     redirect "figures/#{@figure.id}"
-    binding.pry
   end
 
   patch '/figures/:id' do
-    @figure = Figure.find_by_id(params[:id])
-
-    binding.pry
+    @figure = Figure.find(params[:id])
+# binding.pry
     @figure.update(params["figure"])
+    # binding.pry
+    if !params["title"]["name"].empty?
+      @figure.titles << Title.create(params["title"])
+    end
+
+    if !params["landmark"]["name"].empty?
+      @figure.landmarks << Landmark.create(params["landmark"])
+    end
+    @figure.save
     redirect "figures/#{@figure.id}"
-  end
-
-#   patch '/figures/:id' do
-#     if !params[:figure].keys.include?("landmarks")
-#     params[:figure]["landmarks"] = []
-#     end
-
-#     @figure = Figure.find_by_id(params[:id])
-
-#     @figure.update(params["figure"])
-#     if !params["figure"]["landmarks"].empty?
-#       @owner.landmark << Landmark.create(landmark: params["figure"]["landmarks"])
-#     end
-#     redirect "figures/#{@figure.id}"
-# end
+end
 
 
 
